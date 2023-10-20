@@ -27,6 +27,7 @@ yarn-error.log*
 vr/
 .env
 # dtos/
+dist/
 
 # js
 # src/scripts/*
