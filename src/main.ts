@@ -8,16 +8,18 @@ async function bootstrap() {
   // в 2х местах откл. cors
   app.enableCors({ credentials: true, origin: true });
 
-  // настр.из nest/openapi/introduction
+  // настр.из nest/openapi/introduction, измен.на свои swagger
   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    .setTitle('Облачное хранилище')
+    // .setDescription('Описание API Облачного хранилища')
     .setVersion('1.0')
-    .addTag('cats')
+    // .addTag('cats')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  // меняем путь вместо 'api' - 'swagger'
+  SwaggerModule.setup('swagger', app, document);
 
+  // свой порт
   await app.listen(7531);
 }
 bootstrap();
