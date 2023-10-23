@@ -38,6 +38,7 @@ dist/
 # помошники
 GitHub Команды.txt
 info.txt
+webpack*
 
 # настройки
 .vscode
