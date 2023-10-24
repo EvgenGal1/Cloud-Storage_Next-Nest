@@ -10,7 +10,7 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
-    // подкл.модуль для счит.из.env
+    // подкл.модуль для счит.перем.из.env
     ConfigModule.forRoot(),
     // подкл.к БД ч/з перем.process.env
     TypeOrmModule.forRoot({

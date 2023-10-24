@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as express from 'express';
+import { join } from 'path';
 
 // попытка HMR с webpack
 // declare const module: any;
@@ -10,6 +12,9 @@ async function bootstrap() {
 
   // в 2х местах откл. cors
   app.enableCors({ credentials: true, origin: true });
+
+  // MW для путей файлов в uploads
+  app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
   // настр.из nest/openapi/introduction, измен.на свои swagger
   const config = new DocumentBuilder()
