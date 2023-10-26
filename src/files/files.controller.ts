@@ -1,5 +1,5 @@
 import {
-  // Get,
+  Get,
   // Body,
   // Patch,
   // Param,
@@ -24,6 +24,12 @@ import { fileStorage } from './storage';
 export class FilesController {
   constructor(private readonly filesService: FilesService) {}
 
+  // мтд.для получ.всех ф.списком.масс. Обращ.к files, возвращ.масс.всех ф. При получ.запроса обращ.к serv берём мтд.findAll который обращ.к БД, резулт.данн.fn вернёт в ответ на данн.запрос
+  @Get()
+  findAll() {
+    return this.filesService.findAll();
+  }
+
   @Post()
   // перехват.для раб.с ф
   @UseInterceptors(FileInterceptor('file', { storage: fileStorage }))
@@ -41,6 +47,7 @@ export class FilesController {
       },
     },
   })
+
   // create(@Body() createFileDto: CreateFileDto) { return this.filesService.create(createFileDto); } // до UploadedFile
   // вытяг.ф.из запроса
   create(
