@@ -9,5 +9,7 @@ import { UserEntity } from './entities/user.entity';
   providers: [UsersService],
   // подкл.UserEntity ч/з TypeOrmModule в import для раб.с табл.users
   imports: [TypeOrmModule.forFeature([UserEntity])],
+  // export UsersService для видимости вне modulя (напр.в AuthService)
+  exports: [UsersService],
 })
 export class UsersModule {}
