@@ -25,15 +25,12 @@ export class UsersService {
   }
 
   // созд.user ч/з получ.объ при req с инфо о user
-  create(dto: CreateUserDto) {
-    return this.repository.save(dto);
+  create(createUserDto: CreateUserDto) {
+    //   return 'Это действие добавляет нового пользователя'; // измен.после InjectRepository
+    return this.repository.save(createUserDto);
   }
 
-  // удал.после InjectRepository
-  // create(createUserDto: CreateUserDto) {
-  //   return 'Это действие добавляет нового пользователя';
-  // }
-
+  // коммит.после InjectRepository
   // findAll() {
   //   return `Это действие возвращает всех пользователей`;
   // }

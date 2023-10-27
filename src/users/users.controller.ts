@@ -18,10 +18,15 @@ import { ApiTags } from '@nestjs/swagger';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  // // мтд.для получ.всех ф.списком.масс. Обращ.к files, возвращ.масс.всех ф. При получ.запроса обращ.к serv берём мтд.findAll который обращ.к БД, резулт.данн.fn вернёт в ответ на данн.запрос
-  // @Get()
-  // findAll() {
-  //   return this.usersService.findAll();
+  // пробы переноса мтд.под serv
+  // @Get(':email')
+  // findByEmail(@Param('email') email: string) {
+  //   return this.usersService.findByEmail(email);
+  // }
+
+  // @Get(':id')
+  // findById(@Param('id') id: string) {
+  //   return this.usersService.findById(+id);
   // }
 
   @Post()
@@ -29,7 +34,8 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  // удал.после @InjectRepository(FileEntity) в u.serv.ts
+  // коммит.после @InjectRepository(FileEntity) в u.serv.ts
+  // мтд.для получ.всех ф.списком.масс. Обращ.к files, возвращ.масс.всех ф. При получ.запроса обращ.к serv берём мтд.findAll который обращ.к БД, резулт.данн.fn вернёт в ответ на данн.запрос
   // @Get()
   // findAll() {
   //   return this.usersService.findAll();
