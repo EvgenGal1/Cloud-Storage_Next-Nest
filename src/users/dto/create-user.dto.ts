@@ -9,6 +9,11 @@ export class CreateUserDto {
   email: string;
 
   @ApiProperty({
+    default: '123_Тест',
+  })
+  password: string;
+
+  @ApiProperty({
     default: 'Тест Тестович',
   })
   fullName: string;
@@ -16,5 +21,15 @@ export class CreateUserDto {
   @ApiProperty({
     default: '123_Тест',
   })
-  password: string;
+  role: string;
+
+  @ApiProperty({
+    default: false,
+  })
+  activated: boolean;
+
+  @ApiProperty({
+    default: '--',
+  })
+  link: string;
 }
