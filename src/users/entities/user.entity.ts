@@ -21,12 +21,15 @@ export class UserEntity {
   @Column()
   fullName: string;
 
+  // доп.добав.на будущ.
   @Column()
   role: string;
 
+  // доп.добав.на будущ.
   @Column()
   activated: boolean;
 
+  // доп.добав.на будущ.
   @Column()
   link: string;
 
