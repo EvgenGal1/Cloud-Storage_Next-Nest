@@ -1,11 +1,16 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { UserEntity } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthService {
-  // подкл. u.serv ч/з внедр.завис.
-  constructor(private userService: UsersService) {}
+  // подкл. u.,jwt.serv ч/з внедр.завис.
+  constructor(
+    private userService: UsersService,
+    private jwtService: JwtService,
+  ) {}
 
   // мтд.пров.log,psw.
   async validateUser(email: string, password: string): Promise<any> {
@@ -27,11 +32,17 @@ export class AuthService {
     try {
       // созд.user
       const userData = await this.userService.create(createUserDto);
-      // получ.инфо о user
-      return userData;
+      // return userData; - получ.инфо о user
+      // генер.Токен при Регистр
+      return { token: this.jwtService.sign({ id: userData.id }) };
     } catch (err) {
       console.log(err);
       throw new ForbiddenException(`Ошибка при регистрации ${err}`);
     }
+  }
+
+  // мтд.Авторизации. Получ.инфо о user и шифр.в jwt
+  async login(user: UserEntity) {
+    return { token: this.jwtService.sign({ id: user.id }) };
   }
 }

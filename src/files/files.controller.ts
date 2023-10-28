@@ -10,17 +10,23 @@ import {
   UploadedFile,
   ParseFilePipe,
   MaxFileSizeValidator,
+  UseGuards,
 } from '@nestjs/common';
 // import { CreateFileDto } from './dto/create-file.dto';
 // import { UpdateFileDto } from './dto/update-file.dto';
 import { FilesService } from './files.service';
-import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { fileStorage } from './storage';
+import { JwtAuthGuard } from 'src/auth/guard/jwt.guard';
 
 @Controller('files')
 //  групп.мтд.cntrl files
 @ApiTags('files')
+// оборач. f.cntrl в @UseGuard(JwtAuthGuard) для защищ.от Авториз. Откл.req е/и JWT Токен отсутств./просроч.
+@UseGuards(JwtAuthGuard)
+// оборач. чтоб swagger знал что req на files защищены
+@ApiBearerAuth()
 export class FilesController {
   constructor(private readonly filesService: FilesService) {}
 

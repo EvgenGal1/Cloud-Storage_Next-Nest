@@ -21,11 +21,15 @@ async function bootstrap() {
     .setTitle('Облачное хранилище')
     // .setDescription('Описание API Облачного хранилища')
     .setVersion('1.0')
+    // настр.для использ.jwt.Токен в swagger
+    .addBearerAuth()
     // .addTag('cats')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  // меняем путь вместо 'api' - 'swagger'
-  SwaggerModule.setup('swagger', app, document);
+  // меняем путь вместо 'api' - 'swagger', , , настр.для использ.jwt.Токен в swagger
+  SwaggerModule.setup('swagger', app, document, {
+    swaggerOptions: { persisAuthorization: true },
+  });
 
   // ? свой порт сервера ? клиента
   await app.listen(7531 /* 5125 */);
