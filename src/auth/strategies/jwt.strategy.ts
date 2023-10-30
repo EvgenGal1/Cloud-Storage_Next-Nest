@@ -11,11 +11,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: process.env.SECRET_KEY, // jwtConstants.secret - использ.env,
+      secretOrKey: process.env.SECRET_KEY,
     });
   }
 
-  // при расшифр.Токен ч/з jwt.stateg провер.есть ли id в БД
+  // при расшифр./генер.Токен ч/з jwt.stateg провер.есть ли id в БД
   async validate(payload: any) {
     const user = await this.userService.findById(+payload.id);
 

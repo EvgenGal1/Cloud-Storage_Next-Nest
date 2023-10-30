@@ -10,7 +10,7 @@ const generateId = () =>
 
 // генер.уник.имён ч/з generateId
 const normalizeFileName = (req, file, callback) => {
-  const fileExtName = file.originalName.split('.').pop();
+  const fileExtName = file.originalname.split('.').pop();
   callback(null, `${generateId()}.${fileExtName}`);
 };
 
