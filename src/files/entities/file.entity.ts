@@ -7,6 +7,12 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
+// типизация Query парам.ч/з enum. Filter ф.по фото и trash`мусор`
+export enum FileType {
+  PHOTOS = 'photos',
+  TRASH = 'trash',
+}
+
 @Entity('files')
 export class FileEntity {
   @PrimaryGeneratedColumn()
@@ -16,7 +22,7 @@ export class FileEntity {
   fileName: string;
 
   @Column()
-  originalName: string;
+  originalname: string;
 
   @Column()
   size: number;

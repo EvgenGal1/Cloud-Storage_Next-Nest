@@ -11,6 +11,7 @@ import {
   ParseFilePipe,
   MaxFileSizeValidator,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 // import { CreateFileDto } from './dto/create-file.dto';
 // import { UpdateFileDto } from './dto/update-file.dto';
@@ -19,21 +20,24 @@ import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { fileStorage } from './storage';
 import { JwtAuthGuard } from 'src/auth/guard/jwt.guard';
+import { UserId } from 'src/decorators/user-id.decorator';
+import { FileType } from './entities/file.entity';
 
 @Controller('files')
 //  групп.мтд.cntrl files
 @ApiTags('files')
 // оборач. f.cntrl в @UseGuard(JwtAuthGuard) для защищ.от Авториз. Откл.req е/и JWT Токен отсутств./просроч.
 @UseGuards(JwtAuthGuard)
-// оборач. чтоб swagger знал что req на files защищены
+// оборач. чтоб swagger знал что req на files защищены jwt Токеном
 @ApiBearerAuth()
 export class FilesController {
   constructor(private readonly filesService: FilesService) {}
 
   // мтд.для получ.всех ф.списком.масс. Обращ.к files, возвращ.масс.всех ф. При получ.запроса обращ.к serv берём мтд.findAll который обращ.к БД, резулт.данн.fn вернёт в ответ на данн.запрос
   @Get()
-  findAll() {
-    return this.filesService.findAll();
+  // возвращ.ф.опред.user и с опред.типом(декор.Query)
+  findAll(@UserId() userId: number, @Query('type') fileType: FileType) {
+    return this.filesService.findAll(userId, fileType);
   }
 
   @Post()
@@ -64,8 +68,11 @@ export class FilesController {
       }),
     )
     file: Express.Multer.File,
+    @UserId() userId: number,
   ) {
-    return file;
+    // return file;
+    // использ.мтд.из serv. Пердача file ч/з Multer и userId ч/з UserId
+    return this.filesService.create(file, userId);
   }
 
   // удал.после декоратора UseInterceptors

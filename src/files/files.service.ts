@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateFileDto } from './dto/create-file.dto';
-import { UpdateFileDto } from './dto/update-file.dto';
+// import { CreateFileDto } from './dto/create-file.dto';
+// import { UpdateFileDto } from './dto/update-file.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FileEntity } from './entities/file.entity';
 import { Repository } from 'typeorm';
+import { FileType } from './entities/file.entity';
 
 @Injectable()
 export class FilesService {
@@ -13,25 +14,60 @@ export class FilesService {
     private repository: Repository<FileEntity>,
   ) {}
 
-  create(createFileDto: CreateFileDto) {
-    return 'Это действие добавляет новый файл';
-  }
-
-  findAll() {
+  // мтд.получ.всех ф. // возвращ.ф.опред.user и с опред.типом(декор.Query)
+  findAll(userId: number, fileType: FileType) {
+    console.log('userId : ' + userId);
     // return `Это действие возвращает все файлы`;
     // после @InjectRepository(FileEntity) в любом мтд.FilesService, можем обращ.к this.repository для получ.доступ. ко всем мтд.БД табл.files
-    return this.repository.find();
+    // return this.repository.find();
+    // после @UserId(user-id.decorator.ts)
+    // генер.спец. SQL req ч/з Bilder`Картинки`
+    const qb = this.repository.createQueryBuilder('file');
+
+    // наход.ф.где id user совпад с передан.в парам.
+    qb.where('file.userId = :userId', { userId });
+
+    // е/и тип ф. === фото
+    if (fileType == FileType.PHOTOS) {
+      // возвращ.ф.с mimetype = image
+      qb.andWhere('file.mimetype LIKE = :type', { type: '%image%' });
+    }
+
+    // е/и тип ф. === `мусор`
+    if (fileType == FileType.TRASH) {
+      // возвращ.ф.с пометкой удалён
+      qb.withDeleted().andWhere('file,deletedAt IS NOT NULL');
+    }
+
+    // возвращ.ф. по генер.спец.req
+    return qb.getMany();
   }
 
-  findOne(id: number) {
-    return `Это действие возвращает файл с ID_#${id} `;
+  // мтд.создания ф. (получ.ф., id user)
+  create(file: Express.Multer.File, userId: number) {
+    // инфо о ф.сохр.в БД для опред.user
+    return this.repository.save({
+      fileName: file.filename,
+      originalname: file.originalname,
+      size: file.size,
+      mimetype: file.mimetype,
+      user: { id: userId },
+    });
   }
 
-  update(id: number, updateFileDto: UpdateFileDto) {
-    return `Это действие обновляет файл с ID_#${id} `;
-  }
+  // create(createFileDto: CreateFileDto) {
+  //   return 'Это действие добавляет новый файл';
+  // }
 
-  remove(id: number) {
-    return `Это действие удаляет файл с ID_#${id} `;
-  }
+  // findOne(id: number) {
+  //   return `Это действие возвращает файл с ID_#${id} `;
+  // }
+
+  // update(id: number, updateFileDto: UpdateFileDto) {
+  //   return `Это действие обновляет файл с ID_#${id} `;
+  // }
+
+  // remove(id: number) {
+  //   return `Это действие удаляет файл с ID_#${id} `;
+  // }
 }
