@@ -21,10 +21,10 @@ export class FilesService {
     // после @InjectRepository(FileEntity) в любом мтд.FilesService, можем обращ.к this.repository для получ.доступ. ко всем мтд.БД табл.files
     // return this.repository.find();
     // после @UserId(user-id.decorator.ts)
-    // генер.спец. SQL req ч/з Bilder`Картинки`
+    // генер.спец. SQL req ч/з `Создать строитель запросов`
     const qb = this.repository.createQueryBuilder('file');
 
-    // наход.ф.где id user совпад с передан.в парам.
+    // наход.ф.где id user совпад.с передан.в парам.
     qb.where('file.userId = :userId', { userId });
 
     // е/и тип ф. === фото
@@ -57,7 +57,20 @@ export class FilesService {
 
   // мтд.удал.
   async remove(userId: number, ids: string) {
-    return `Это действие удаляет файл с ID_#${id} `;
+    // превращ.ids ф.в масс.
+    const idsArray = ids.split(',');
+
+    // генер.спец. SQL req ч/з `Создать строитель запросов`
+    const qb = this.repository.createQueryBuilder('files');
+
+    // наход.ф.по ids И userId
+    qb.where('id IN (:...ids) AND userId = :userId', {
+      ids: idsArray,
+      userId,
+    });
+
+    // пометка `мягк.удал.`ф.
+    return qb.softDelete().execute();
   }
 
   // create(createFileDto: CreateFileDto) {

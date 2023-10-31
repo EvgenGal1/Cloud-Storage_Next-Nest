@@ -80,8 +80,8 @@ export class FilesController {
   @Delete()
   remove(@UserId() userId: number, @Query('ids') ids: string) {
     // передача ф.id ч/з запят.> удал. file?ids=1,2,4,
-    return this.filesService.remove(userId,ids);
-  // }
+    return this.filesService.remove(userId, ids);
+  }
 
   // удал.после декоратора UseInterceptors
   // @Get()

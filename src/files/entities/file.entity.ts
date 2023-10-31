@@ -36,5 +36,5 @@ export class FileEntity {
 
   // декоратор поментки удаления (без удаления)
   @DeleteDateColumn()
-  daletedAt?: Date;
+  deletedAt?: Date;
 }
