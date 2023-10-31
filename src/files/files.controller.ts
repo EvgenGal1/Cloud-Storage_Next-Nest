@@ -3,7 +3,7 @@ import {
   // Body,
   // Patch,
   // Param,
-  // Delete,
+  Delete,
   Controller,
   Post,
   UseInterceptors,
@@ -58,6 +58,7 @@ export class FilesController {
     },
   })
 
+  // мтд.создания ф.
   // create(@Body() createFileDto: CreateFileDto) { return this.filesService.create(createFileDto); } // до UploadedFile
   // вытяг.ф.из запроса
   create(
@@ -74,6 +75,13 @@ export class FilesController {
     // использ.мтд.из serv. Пердача file ч/з Multer и userId ч/з UserId
     return this.filesService.create(file, userId);
   }
+
+  // мтд.удал.ф
+  @Delete()
+  remove(@UserId() userId: number, @Query('ids') ids: string) {
+    // передача ф.id ч/з запят.> удал. file?ids=1,2,4,
+    return this.filesService.remove(userId,ids);
+  // }
 
   // удал.после декоратора UseInterceptors
   // @Get()

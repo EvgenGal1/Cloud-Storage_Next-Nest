@@ -55,6 +55,11 @@ export class FilesService {
     });
   }
 
+  // мтд.удал.
+  async remove(userId: number, ids: string) {
+    return `Это действие удаляет файл с ID_#${id} `;
+  }
+
   // create(createFileDto: CreateFileDto) {
   //   return 'Это действие добавляет новый файл';
   // }
