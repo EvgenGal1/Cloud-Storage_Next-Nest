@@ -1,7 +1,6 @@
 // ^ сущн.взаимод.с БД (стркт.табл./измен.данн.в табл.User)
-
 // декораторы для раб.с БД
-import { FileEntity } from 'src/files/entities/file.entity';
+import { FileEntity } from '../../files/entities/file.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 // декоратор для соед.с БД
