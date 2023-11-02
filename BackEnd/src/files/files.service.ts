@@ -16,7 +16,6 @@ export class FilesService {
 
   // мтд.получ.всех ф. // возвращ.ф.опред.user и с опред.типом(декор.Query)
   findAll(userId: number, fileType: FileType) {
-    console.log('userId : ' + userId);
     // return `Это действие возвращает все файлы`;
     // после @InjectRepository(FileEntity) в любом мтд.FilesService, можем обращ.к this.repository для получ.доступ. ко всем мтд.БД табл.files
     // return this.repository.find();

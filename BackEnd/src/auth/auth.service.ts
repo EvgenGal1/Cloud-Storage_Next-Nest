@@ -27,6 +27,11 @@ export class AuthService {
     return null;
   }
 
+  // мтд.Авторизации. Получ.инфо о user и шифр.в jwt
+  async login(user: UserEntity) {
+    return { token: this.jwtService.sign({ id: user.id }) };
+  }
+
   // мтд.Регистрации
   async register(createUserDto: CreateUserDto) {
     try {
@@ -39,10 +44,5 @@ export class AuthService {
       console.log(err);
       throw new ForbiddenException(`Ошибка при регистрации ${err}`);
     }
-  }
-
-  // мтд.Авторизации. Получ.инфо о user и шифр.в jwt
-  async login(user: UserEntity) {
-    return { token: this.jwtService.sign({ id: user.id }) };
   }
 }
