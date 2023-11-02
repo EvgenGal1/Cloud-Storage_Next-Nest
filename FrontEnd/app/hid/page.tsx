@@ -1,3 +1,4 @@
+// домашняя страница
 export default function Home() {
   return (
     <div>
