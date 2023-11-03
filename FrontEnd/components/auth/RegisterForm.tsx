@@ -1,40 +1,35 @@
-// Форма Авторизации с эл.,валид.из antd и сохр.Токен/Cookie ч/з nookies
+// Форма Регистрации
 import React from 'react';
 import { Button, Form, Input, notification } from 'antd';
 import { setCookie } from 'nookies';
 
-import { LoginFormDTO } from '@/api/dto/auth.dto';
+import { RegisterFormDTO } from '@/api/dto/auth.dto';
 import styles from './LoginForm.module.scss';
 
-// мтд.из api/index.ts
 import * as Api from '@/api';
 
-export const LoginForm: React.FC = () => {
-  // обраб.формы
-  const onSubmit = async (values: LoginFormDTO) => {
+export const RegisterForm: React.FC = () => {
+  const onSubmit = async (values: RegisterFormDTO) => {
     try {
-      // Авториз. по мтд.подкл.в api/index.ts
-      const { token } = await Api.auth.login(values);
+      const { token } = await Api.auth.register(values);
 
-      // окно`уведомление` о успешном req
       notification.success({
         message: 'Успешно!',
         description: 'Переходим в админ-панель...',
         duration: 2,
       });
 
-      // сохр.Токен в Cookie. Из LS serv не вытянет Токен
       setCookie(null, '_token', token, {
         path: '/',
       });
 
-      // перенаправ.на стр.`панель приборов`
       location.href = '/dashboard';
     } catch (err) {
-      console.warn('LoginForm', err);
+      console.warn('RegisterForm', err);
+
       notification.error({
         message: 'Ошибка!',
-        description: 'Неверный логин или пароль',
+        description: 'Ошибка при регистрации',
         duration: 2,
       });
     }
@@ -42,7 +37,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <div className={styles.formBlock}>
-      {/* Форма Авторизации с эл.,валид.из antd */}
+      {/* Форма Регистрации с полями email, fullName, password */}
       <Form
         name="basic"
         labelCol={{
@@ -50,7 +45,6 @@ export const LoginForm: React.FC = () => {
         }}
         onFinish={onSubmit}
       >
-        {/* Поле Email */}
         <Form.Item
           label="E-Mail"
           name="email"
@@ -63,7 +57,18 @@ export const LoginForm: React.FC = () => {
         >
           <Input />
         </Form.Item>
-        {/* Поле Пароль */}
+        <Form.Item
+          label="Полное имя"
+          name="fullName"
+          rules={[
+            {
+              required: true,
+              message: 'Укажите полное имя',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
         <Form.Item
           label="Пароль"
           name="password"
@@ -76,7 +81,6 @@ export const LoginForm: React.FC = () => {
         >
           <Input.Password />
         </Form.Item>
-        {/* кнп.Войти */}
         <Form.Item
           wrapperCol={{
             offset: 8,
@@ -84,7 +88,7 @@ export const LoginForm: React.FC = () => {
           }}
         >
           <Button type="primary" htmlType="submit">
-            Войти
+            Регистрация
           </Button>
         </Form.Item>
       </Form>

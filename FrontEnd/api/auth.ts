@@ -5,12 +5,12 @@ import { destroyCookie } from 'nookies';
 import {
   LoginFormDTO,
   LoginResponseDTO,
-  // RegisterFormDTO,
-  // RegisterResponseDTO,
-  // User,
+  RegisterFormDTO,
+  RegisterResponseDTO,
+  User,
 } from '@/api/dto/auth.dto';
 
-// мтд.Авториз.
+// мтд.Авториз. Req - LoginFormDTO, Res - LoginResponseDTO
 export const login = async (
   values: LoginFormDTO,
 ): Promise<LoginResponseDTO> => {
@@ -18,18 +18,18 @@ export const login = async (
 };
 
 // мтд.Регистр.
-// export const register = async (
-//   values: RegisterFormDTO,
-// ): Promise<RegisterResponseDTO> => {
-//   return (await axios.post('/auth/register', values)).data;
-// };
+export const register = async (
+  values: RegisterFormDTO,
+): Promise<RegisterResponseDTO> => {
+  return (await axios.post('/auth/register', values)).data;
+};
 
-// своя стр.
-// export const getMe = async (): Promise<User> => {
-//   return (await axios.get('/users/me')).data;
-// };
+// инфо о user
+export const getMe = async (): Promise<User> => {
+  return (await axios.get('/users/me')).data;
+};
 
-// мтд.Выход
-// export const logout = () => {
-//   destroyCookie(null, '_token', { path: '/' });
-// };
+// мтд.Выход с очистк.cookie
+export const logout = () => {
+  destroyCookie(null, '_token', { path: '/' });
+};

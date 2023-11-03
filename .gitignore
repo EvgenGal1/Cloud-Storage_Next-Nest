@@ -63,6 +63,5 @@ webpack*
 # врем.откл.
 files.ts
 files.dto.ts
-RegisterForm.tsx
 Header/
 Home.module.scss
