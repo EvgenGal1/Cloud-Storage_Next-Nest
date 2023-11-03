@@ -18,18 +18,19 @@ export class CreateUserDto {
   })
   fullName: string;
 
-  @ApiProperty({
-    default: 'USER',
-  })
-  role: string;
+  // упразднил DTO созд.usera
+  // @ApiProperty({
+  //   default: 'USER',
+  // })
+  // role: string;
 
-  @ApiProperty({
-    default: false,
-  })
-  activated: boolean;
+  // @ApiProperty({
+  //   default: false,
+  // })
+  // activated: boolean;
 
-  @ApiProperty({
-    default: '--',
-  })
-  link: string;
+  // @ApiProperty({
+  //   default: '--',
+  // })
+  // link: string;
 }

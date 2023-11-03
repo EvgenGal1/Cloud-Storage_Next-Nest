@@ -20,16 +20,16 @@ export class UserEntity {
   @Column()
   fullName: string;
 
-  // доп.добав.на будущ.
-  @Column()
+  // доп.добав.на будущ.с знач.по умолч.
+  @Column({ default: 'USER' })
   role: string;
 
   // доп.добав.на будущ.
-  @Column()
+  @Column({ default: false })
   activated: boolean;
 
   // доп.добав.на будущ.
-  @Column()
+  @Column({ default: '---' })
   link: string;
 
   // связь табл. 1го ко Мн. 1ый аргум.аноним.fn (табл.обращения - FileEntity), 2ый парам.получ.данн.и обратн.связь
