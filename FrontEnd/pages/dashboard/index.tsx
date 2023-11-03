@@ -11,6 +11,7 @@ import axios from 'axios';
 // import { Files } from "@/modules/Files";
 
 import nookies from 'nookies';
+import { checkAuth } from '@/utils/checkAuth';
 
 interface Props {
   items: FileItem[];
@@ -31,37 +32,18 @@ const DashboardPage: NextPage /* <Props> */ = (/* { items } */) => {
 
 // `Получить реквизиты на стороне сервера` проверка на SRV что user Авториз.
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  // const authProps = await checkAuth(ctx);
-  const { _token } = nookies.get(ctx);
-  console.log('_token ', _token);
+  // вызов fn()Авториз.
+  const authProps = await checkAuth(ctx);
 
-  axios.defaults.headers.Authrization = 'Bearer ' + _token;
-
-  // if ('redirect' in authProps) {
-  //   return authProps;
-  // }
-
-  try {
-    // const items = await Api.files.getAll();
-    await Api.auth.getMe();
-
-    return {
-      // props: {
-      //   items,
-      // },
-      // е/и от SRV нет ошб. остаёмся на "/dashboard"
-      props: {},
-    };
-  } catch (err) {
-    console.log('975 ', 975);
-    console.log(err);
-    console.log('876 ', 876);
-    return {
-      // props: { items: [] },
-      // при ошб.с SRV переправ.на Форму Авториз.
-      redirect: { destination: '/dashboard/auth', permanent: false },
-    };
+  // есть ли redirect в объ.res checkAuth
+  if ('redirect' in authProps) {
+    // отправ.на Авториз.
+    return authProps;
   }
+  return {
+    // е/и redirect нет возвращ.пуст.props(остаёмся на "/dashboard")
+    props: {},
+  };
 };
 
 export default DashboardPage;
