@@ -63,5 +63,4 @@ webpack*
 # врем.откл.
 files.ts
 files.dto.ts
-Header/
 Home.module.scss
