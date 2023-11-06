@@ -12,6 +12,7 @@ import axios from 'axios';
 
 import nookies from 'nookies';
 import { checkAuth } from '@/utils/checkAuth';
+import { Header } from '@/components/Header';
 
 interface Props {
   items: FileItem[];
@@ -19,7 +20,10 @@ interface Props {
 
 const DashboardPage: NextPage /* <Props> */ = (/* { items } */) => {
   return (
-    <div>Панель инструментов</div>
+    <main>
+      <Header />
+      <div>Панель инструментов</div>
+    </main>
     // <DashboardLayout>
     //   <Files items={items} withActions />
     // </DashboardLayout>
