@@ -46,7 +46,7 @@ export class FilesService {
   create(file: Express.Multer.File, userId: number) {
     // инфо о ф.сохр.в БД для опред.user
     return this.repository.save({
-      fileName: file.filename,
+      filename: file.filename,
       originalname: file.originalname,
       size: file.size,
       mimetype: file.mimetype,
