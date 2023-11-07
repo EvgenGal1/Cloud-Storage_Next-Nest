@@ -1,4 +1,4 @@
-// мтд.req > БД
+// ^ мтд.req > БД
 import axios from '@/core/axios';
 import { destroyCookie } from 'nookies';
 
@@ -24,7 +24,7 @@ export const register = async (
   return (await axios.post('/auth/register', values)).data;
 };
 
-// инфо о user
+// мтд.получ.инфо о user
 export const getMe = async (): Promise<User> => {
   return (await axios.get('/users/me')).data;
 };
