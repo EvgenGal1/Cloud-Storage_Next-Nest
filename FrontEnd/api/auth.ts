@@ -1,4 +1,4 @@
-// ^ мтд.req > БД
+// ^ мтд.req > БД для Авториз./Регистр./Польз.
 import axios from '@/core/axios';
 import { destroyCookie } from 'nookies';
 

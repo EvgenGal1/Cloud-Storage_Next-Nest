@@ -61,16 +61,9 @@ webpack*
 .vscode
 
 # врем.откл.
-files.ts
-files.dto.ts 
+# files.ts
+# files.dto.ts 
 FileActions/
-FileCard/
-FileList/
-UploadButton/
 modules/
 photos.tsx
 trash.tsx
-getColorByExtension.ts
-getExtensionFromFileName.ts
-isImage.ts
-DashboardLayout.tsx

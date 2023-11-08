@@ -16,7 +16,10 @@ interface Props {
   userData: User;
 }
 
-const DashboardProfilePage: NextPage<Props> = ({ userData }) => {
+// const DashboardProfilePage : NextPage<Props> = ({ userData }) => {
+// !! Свойство "getLayout" не существует в типе "FunctionComponent<{}> & ...
+// ~~ вар.решения убрать тип для const и постав.тип для парам.
+const DashboardProfilePage = ({ userData }: any) => {
   // кнп.Выход
   const onClickLogout = () => {
     if (window.confirm('Вы действительно хотите выйти?')) {
