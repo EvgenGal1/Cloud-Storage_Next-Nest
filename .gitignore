@@ -61,7 +61,3 @@ webpack*
 .vscode
 
 # врем.откл.
-# files.ts
-# files.dto.ts 
-FileActions/
-modules/
