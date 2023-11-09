@@ -65,5 +65,3 @@ webpack*
 # files.dto.ts 
 FileActions/
 modules/
-photos.tsx
-trash.tsx

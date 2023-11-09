@@ -19,7 +19,6 @@ export const FileCard: React.FC<FileCardProps> = ({
   originalName,
   filename,
 }) => {
-  console.log('filename ', filename);
   // берём.расшир.ф.
   const ext = getExtensionFromFileName(filename);
   // путь к Изо(е/и расшир.Изо) или пуст.строка
@@ -39,6 +38,7 @@ export const FileCard: React.FC<FileCardProps> = ({
         {/* отсовка Изо(е/и расшир.Изо) или Иконка из @ant-design */}
         {isImage(ext) ? (
           <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={styles.image} src={imageUrl} alt="File" />
             {/* //  от ошб. Using `<img>` could result in slower LCP ... `<Image />` from `next/image` */}
             {/* <Image className={styles.image} src={imageUrl} alt="File" /> */}

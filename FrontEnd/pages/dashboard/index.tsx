@@ -30,10 +30,10 @@ interface Props {
 }
 
 // приним.масс.ф.с БД
-// const DashboardPage: NextPage<Props> = ({ items }) => {
-// !! Свойство "getLayout" не существует в типе "FunctionComponent<{}> & ...
-// ~~ вар.решения убрать тип для const и постав.тип для парам.
-const DashboardPage = ({ items }: any) => {
+const DashboardPage: NextPage<Props> = ({ items }) => {
+  // !! Свойство "getLayout" не существует в типе "FunctionComponent<{}> & ...
+  // ~~ вар.решения убрать тип для const и постав.тип для парам.
+  // const DashboardPage = ({ items }: any) => {
   const router = useRouter();
   const selectedMenu = router.pathname;
 
@@ -50,7 +50,7 @@ const DashboardPage = ({ items }: any) => {
   );
 };
 
-// отрисов.ч/з getLayout(`Получите макет`) для стр.
+// отрисов.ч/з getLayout(`Получите макет`) для Главн.стр.
 DashboardPage.getLayout = (page: React.ReactNode) => {
   // fn возврата jsx разметки
   return <Layout title="Dashboard / Главная">{page}</Layout>;
@@ -67,16 +67,10 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     return authProps;
   }
 
-  // упразд. > DashboardLayout.FileList
-  // е/и redirect нет возвращ.пуст.props(остаёмся на "/dashboard")
-  // return {
-  //   props: {},
-  // };
-
-  // req список файлов с БД
+  // req список всех файлов с БД
   try {
     const items = await Api.files.getAll();
-    console.log('items ', items);
+
     return {
       props: {
         items,
