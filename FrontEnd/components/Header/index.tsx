@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import { Layout, Avatar, Menu, Popover, Button } from 'antd';
 import { CloudOutlined } from '@ant-design/icons';
 
-import styles from './Header.module.scss';
-
 import * as Api from '@/api';
+
+import styles from './Header.module.scss';
 
 export const Header: React.FC = () => {
   // настр.маршр. Хук и перем.конкретн.путь нахождения

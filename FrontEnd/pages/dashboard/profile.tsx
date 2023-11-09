@@ -1,13 +1,12 @@
 // ^ стр.Профиля
-import { GetServerSidePropsContext, NextPage } from 'next';
 import React from 'react';
+import { GetServerSidePropsContext, NextPage } from 'next';
 import { Button } from 'antd';
 
 import * as Api from '@/api';
 import { User } from '@/api/dto/auth.dto';
 import { checkAuth } from '@/utils/checkAuth';
 import { Layout } from '@/layouts/Layout';
-import DashboardPage from '@/pages/dashboard/index';
 
 import styles from '@/styles/Profile.module.scss';
 
@@ -17,9 +16,6 @@ interface Props {
 }
 
 const DashboardProfilePage: NextPage<Props> = ({ userData }) => {
-  // ! Свойство "getLayout" не существует в типе "FunctionComponent<{}> & ...
-  // ~~ вар.решения убрать тип для const и постав.тип для парам.
-  // const DashboardProfilePage = ({ userData }: any) => {
   // кнп.Выход
   const onClickLogout = () => {
     if (window.confirm('Вы действительно хотите выйти?')) {

@@ -13,7 +13,6 @@ interface Props extends AppProps {
 
 export default function App({ Component, pageProps }: Props) {
   // перерисов.ток.изменения
-  // const getLayout = Component.getLayout || ((page: React.ReactNode) => page);
   const getLayout = Component.getLayout ?? ((page: React.ReactNode) => page);
 
   // return <Component {...pageProps} />;

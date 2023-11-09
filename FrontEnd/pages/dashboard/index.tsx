@@ -1,13 +1,12 @@
 // ^ Главн.Стр./DashboardPage(стр.`панель приборов`)
-import { GetServerSidePropsContext, NextPage } from 'next';
 import React from 'react';
-import { useRouter } from 'next/router';
+import { GetServerSidePropsContext, NextPage } from 'next';
 
 import * as Api from '@/api';
 import { FileItem } from '@/api/dto/files.dto';
+import { checkAuth } from '@/utils/checkAuth';
 import { Layout } from '@/layouts/Layout';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
-import { checkAuth } from '@/utils/checkAuth';
 import { Files } from '@/modules/Files';
 
 // приним.масс.ф.с БД
@@ -17,9 +16,6 @@ interface Props {
 
 // приним.масс.ф.с БД
 const DashboardPage: NextPage<Props> = ({ items }) => {
-  const router = useRouter();
-  const selectedMenu = router.pathname;
-
   return (
     <DashboardLayout>
       <Files items={items} withActions />

@@ -1,6 +1,6 @@
 // ^ Макет Панели Инструментов для Изо, Фото, Корзины
-import { useRouter } from 'next/router';
 import React from 'react';
+import { useRouter } from 'next/router';
 import { Menu } from 'antd';
 import {
   DeleteOutlined,

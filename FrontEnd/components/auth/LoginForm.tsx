@@ -3,11 +3,11 @@ import React from 'react';
 import { Button, Form, Input, notification } from 'antd';
 import { setCookie } from 'nookies';
 
-import { LoginFormDTO } from '@/api/dto/auth.dto';
-import styles from './LoginForm.module.scss';
-
 // мтд.из api/index.ts
 import * as Api from '@/api';
+import { LoginFormDTO } from '@/api/dto/auth.dto';
+
+import styles from './LoginForm.module.scss';
 
 export const LoginForm: React.FC = () => {
   // обраб.формы
