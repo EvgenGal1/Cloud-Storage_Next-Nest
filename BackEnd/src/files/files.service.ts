@@ -29,13 +29,13 @@ export class FilesService {
     // е/и тип ф. === фото
     if (fileType == FileType.PHOTOS) {
       // возвращ.ф.с mimetype = image
-      qb.andWhere('file.mimetype LIKE = :type', { type: '%image%' });
+      qb.andWhere('file.mimetype ILIKE :type', { type: '%image%' });
     }
 
     // е/и тип ф. === `мусор`
     if (fileType == FileType.TRASH) {
       // возвращ.ф.с пометкой удалён
-      qb.withDeleted().andWhere('file,deletedAt IS NOT NULL');
+      qb.withDeleted().andWhere('file.deletedAt IS NOT NULL');
     }
 
     // возвращ.ф. по генер.спец.req
