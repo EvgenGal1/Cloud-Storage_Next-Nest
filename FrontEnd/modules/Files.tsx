@@ -13,7 +13,7 @@ interface FilesProps {
 }
 
 export const Files: React.FC<FilesProps> = ({ items, withActions }) => {
-  // state файлов и выбора ф.
+  // state id файлов и выборки
   const [files, setFiles] = React.useState(items || []);
   const [selectedIds, setSelectedIds] = React.useState<number[]>([]);
 
@@ -26,16 +26,19 @@ export const Files: React.FC<FilesProps> = ({ items, withActions }) => {
     }
   };
 
-  // обраб.клик Удаление
+  // Удаление
   const onClickRemove = () => {
+    // очистка выбраных ф.
     setSelectedIds([]);
+    // удал.ф.из state
     setFiles((prev) => prev.filter((file) => !selectedIds.includes(file.id)));
+    // удал.с БД
     Api.files.remove(selectedIds);
   };
 
-  // обраб.клик Поделиться
+  // Поделиться // ! нет реализации
   const onClickShare = () => {
-    alert('share');
+    alert(`Выделены файлы с id ${selectedIds}`);
   };
 
   return (
