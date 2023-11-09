@@ -1,16 +1,14 @@
 // ^ Главн.Стр./DashboardPage(стр.`панель приборов`)
 import { GetServerSidePropsContext, NextPage } from 'next';
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import * as Api from '@/api';
 import { FileItem } from '@/api/dto/files.dto';
 import { Layout } from '@/layouts/Layout';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { checkAuth } from '@/utils/checkAuth';
-// import { Files } from '@/modules/Files';
-import { FileList } from '@/components/FileList';
-
-import { useRouter } from 'next/router';
+import { Files } from '@/modules/Files';
 
 // приним.масс.ф.с БД
 interface Props {
@@ -19,17 +17,12 @@ interface Props {
 
 // приним.масс.ф.с БД
 const DashboardPage: NextPage<Props> = ({ items }) => {
-  // ! Свойство "getLayout" не существует в типе "FunctionComponent<{}> & ...
-  // ~~ вар.решения убрать тип для const и постав.тип для парам.
-  // const DashboardPage = ({ items }: any) => {
-
   const router = useRouter();
   const selectedMenu = router.pathname;
 
   return (
     <DashboardLayout>
-      {/* <Files items={items} withActions /> */}
-      <FileList items={items} />
+      <Files items={items} withActions />
     </DashboardLayout>
   );
 };

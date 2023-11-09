@@ -1,7 +1,6 @@
-// ^ загр.файл
+// ^ карточка файла
 import React from 'react';
 import { FileTextOutlined } from '@ant-design/icons';
-import Image from 'next/image';
 
 import { getExtensionFromFileName } from '@/utils/getExtensionFromFileName';
 import { getColorByExtension } from '@/utils/getColorByExtension';
@@ -40,8 +39,6 @@ export const FileCard: React.FC<FileCardProps> = ({
           <>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={styles.image} src={imageUrl} alt="File" />
-            {/* //  от ошб. Using `<img>` could result in slower LCP ... `<Image />` from `next/image` */}
-            {/* <Image className={styles.image} src={imageUrl} alt="File" /> */}
           </>
         ) : (
           <FileTextOutlined />

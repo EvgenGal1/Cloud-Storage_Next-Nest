@@ -8,19 +8,15 @@ import { Layout } from '@/layouts/Layout';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { checkAuth } from '@/utils/checkAuth';
 import { Files } from '@/modules/Files';
-import { FileList } from '@/components/FileList';
 
 interface Props {
   items: FileItem[];
 }
 
 const DashboardPhotos: NextPage<Props> = ({ items }) => {
-  // ! Свойство "getLayout" не существует в типе "FunctionComponent<{}> & ...
-  // const DashboardPhotos = ({ items }: any) => {
   return (
     <DashboardLayout>
-      {/* <Files items={items} withActions /> */}
-      <FileList items={items} />
+      <Files items={items} withActions />
     </DashboardLayout>
   );
 };

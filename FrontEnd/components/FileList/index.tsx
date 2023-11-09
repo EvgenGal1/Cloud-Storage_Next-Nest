@@ -11,12 +11,10 @@ export type FileSelectType = 'select' | 'unselect';
 
 interface FileListProps {
   items: FileItem[];
-  // onFileSelect: (id: string, type: FileSelectType) => void;
+  onFileSelect?: (id: /* string | */ number, type: FileSelectType) => void;
 }
 
-export const FileList: React.FC<FileListProps> = ({
-  items /* , onFileSelect */,
-}) => {
+export const FileList: React.FC<FileListProps> = ({ items, onFileSelect }) => {
   return (
     <div className={styles.root}>
       {items.map((item) => (
