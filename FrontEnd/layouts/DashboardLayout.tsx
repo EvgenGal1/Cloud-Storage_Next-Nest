@@ -27,7 +27,9 @@ export const DashboardLayout: React.FC<React.PropsWithChildren> = ({
         <Menu
           className={styles.menu}
           mode="inline"
+          // передача масс.путей/пунктов в Меню по выбранных
           selectedKeys={[selectedMenu]}
+          // ссылки перехода на страницы
           items={[
             {
               key: `/dashboard`,

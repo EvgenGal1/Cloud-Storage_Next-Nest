@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
             className={styles.topMenu}
             theme="dark"
             mode="horizontal"
-            // передача пути в Меню
+            // передача масс.путей/пунктов в Меню по умолч.
             defaultSelectedKeys={[selectedMenu]}
             //авто.опред.Меню какой путь подсвечивать
             onSelect={({ key }) => router.push(key)}

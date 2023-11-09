@@ -17,7 +17,7 @@ interface Props {
 }
 
 const DashboardProfilePage: NextPage<Props> = ({ userData }) => {
-  // !! Свойство "getLayout" не существует в типе "FunctionComponent<{}> & ...
+  // ! Свойство "getLayout" не существует в типе "FunctionComponent<{}> & ...
   // ~~ вар.решения убрать тип для const и постав.тип для парам.
   // const DashboardProfilePage = ({ userData }: any) => {
   // кнп.Выход
@@ -53,6 +53,7 @@ const DashboardProfilePage: NextPage<Props> = ({ userData }) => {
 };
 
 // отрисов.ч/з getLayout(`Получите макет`) для стр.
+// @ts-ignore // ! от ошб. - Свойство "getLayout" не существует в типе "FunctionComponent<{}> & ...
 DashboardProfilePage.getLayout = (page: React.ReactNode) => {
   return <Layout title="Dashboard / Профиль">{page}</Layout>;
 };
