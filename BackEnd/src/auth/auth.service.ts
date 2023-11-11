@@ -17,7 +17,7 @@ export class AuthService {
     // Наход.user по email
     const user = await this.userService.findByEmail(email);
 
-    // провер.psw с psw.БД // ! пока без шифр.
+    // сравн.psw с psw.БД // ! пока без шифр.
     if (user && user.password == password) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;

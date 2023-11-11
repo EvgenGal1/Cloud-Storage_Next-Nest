@@ -16,7 +16,7 @@ async function bootstrap() {
   // MW для путей файлов в uploads
   app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
-  // настр.из nest/openapi/introduction, измен.на свои swagger
+  // Настр.док. Настр.из nest/openapi/introduction, измен.на свои swagger
   const config = new DocumentBuilder()
     .setTitle('Облачное хранилище')
     // .setDescription('Описание API Облачного хранилища')
@@ -25,9 +25,11 @@ async function bootstrap() {
     .addBearerAuth()
     // .addTag('cats')
     .build();
+  // созд.док.(экземп.прилож., объ.парам., специф.доступа(3ий не обязат.парам.))
   const document = SwaggerModule.createDocument(app, config);
-  // меняем путь вместо 'api' - 'swagger', , , настр.для использ.jwt.Токен в swagger
+  // меняем путь вместо 'api' - 'swagger'. (путь устан.swg, экземп.прилож., объ.док.)
   SwaggerModule.setup('swagger', app, document, {
+    // настр.для использ.jwt.Токен в swagger
     swaggerOptions: { persisAuthorization: true },
   });
 

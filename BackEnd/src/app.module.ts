@@ -25,6 +25,7 @@ import { AuthModule } from './auth/auth.module';
       entities: [UserEntity, FileEntity],
       synchronize: true,
     }),
+    // подкл.использ.modulи
     UsersModule,
     FilesModule,
     AuthModule,

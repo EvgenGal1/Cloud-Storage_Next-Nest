@@ -13,7 +13,7 @@ export class AuthController {
 
   // @UseGuards(AuthGuard('local')) - откл.после LocalAuthGuard
   @UseGuards(LocalAuthGuard)
-  @Post('login')
+  @Post('/login')
   // указ.какой объ.передавать в мтд.
   @ApiBody({ type: CreateUserDto })
   async login(@Request() req) {

@@ -45,7 +45,7 @@ export class FilesController {
   @UseInterceptors(FileInterceptor('file', { storage: fileStorage }))
   // тип запроса
   @ApiConsumes('multipart/form-data')
-  // настр.схемы swagge
+  // настр.схемы swagger
   @ApiBody({
     schema: {
       type: 'object',
