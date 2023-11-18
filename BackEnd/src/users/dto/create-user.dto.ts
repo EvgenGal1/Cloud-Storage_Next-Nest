@@ -1,6 +1,6 @@
+// ^ разрещ.данн.req front > dack. Отдел.кл.с опис.ожид.св-в
 import { ApiProperty } from '@nestjs/swagger';
 
-// разрещ.данн.req front > dack. Отдел.кл.с опис.ожид.св-в
 export class CreateUserDto {
   // доп.декор для поним.swagger какие есть св-ва. Можно указ.знач.по умолч. в {default:''}
   @ApiProperty({

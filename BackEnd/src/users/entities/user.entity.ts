@@ -32,7 +32,7 @@ export class UserEntity {
   @Column({ default: '---' })
   link: string;
 
-  // связь табл. 1го ко Мн. 1ый аргум.аноним.fn (табл.обращения - FileEntity), 2ый парам.получ.данн.и обратн.связь
+  // связь табл. 1го ко Мн. У Одного(польз.) Мн.данн.(файлов). 1ый аргум.аноним.fn (табл.обращения - FileEntity), 2ый парам.получ.данн.и обратн.связь
   @OneToMany(() => FileEntity, (file: FileEntity) => file.user)
   // типиз.данн. (возвращ.список FileEntity)
   files: FileEntity[];
