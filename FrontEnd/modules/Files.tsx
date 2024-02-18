@@ -1,11 +1,11 @@
 // ^ умн.Комп. Использ др.Комп.(кнп. и ф.) + своя логика
-import React from 'react';
-import { Empty } from 'antd';
+import React from "react";
+import { Empty } from "antd";
 
-import * as Api from '@/api';
-import { FileItem } from '@/api/dto/files.dto';
-import { FileActions } from '@/components/FileActions';
-import { FileList, FileSelectType } from '@/components/FileList';
+import * as Api from "@/api";
+import { FileItem } from "@/api/dto/files.dto";
+import { FileActions } from "@/components/FileActions";
+import { FileList, FileSelectType } from "@/components/FileList";
 
 interface FilesProps {
   items: FileItem[];
@@ -19,7 +19,7 @@ export const Files: React.FC<FilesProps> = ({ items, withActions }) => {
 
   // выборка файлов
   const onFileSelect = (id: number, type: FileSelectType) => {
-    if (type === 'select') {
+    if (type === "select") {
       setSelectedIds((prev) => [...prev, id]);
     } else {
       setSelectedIds((prev) => prev.filter((_id) => _id !== id));

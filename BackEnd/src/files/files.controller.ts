@@ -1,8 +1,5 @@
 import {
   Get,
-  // Body,
-  // Patch,
-  // Param,
   Delete,
   Controller,
   Post,
@@ -13,15 +10,16 @@ import {
   UseGuards,
   Query,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
+
 // import { CreateFileDto } from './dto/create-file.dto';
 // import { UpdateFileDto } from './dto/update-file.dto';
+import { FileType } from './entities/file.entity';
 import { FilesService } from './files.service';
-import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
-import { FileInterceptor } from '@nestjs/platform-express';
 import { fileStorage } from './storage';
 import { JwtAuthGuard } from 'src/auth/guard/jwt.guard';
 import { UserId } from 'src/decorators/user-id.decorator';
-import { FileType } from './entities/file.entity';
 
 @Controller('files')
 //  групп.мтд.cntrl files
@@ -40,6 +38,7 @@ export class FilesController {
     return this.filesService.findAll(userId, fileType);
   }
 
+  // мтд.создания ф.
   @Post()
   // перехват.для раб.с ф
   @UseInterceptors(FileInterceptor('file', { storage: fileStorage }))
@@ -57,11 +56,9 @@ export class FilesController {
       },
     },
   })
-
-  // мтд.создания ф.
   // create(@Body() createFileDto: CreateFileDto) { return this.filesService.create(createFileDto); } // до UploadedFile
-  // вытяг.ф.из запроса
   create(
+    // вытяг.ф.из запроса
     @UploadedFile(
       // валид.разм.в bite. Здесь макс.3 Mb
       new ParseFilePipe({
